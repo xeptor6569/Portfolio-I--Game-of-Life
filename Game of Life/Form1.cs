@@ -13,8 +13,8 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         int seed = 10;
-        static int universeHeigth = 10;
-        static int universeWidth = 10;
+        static int universeHeigth = 20;
+        static int universeWidth = 20;
         // The universe array
         bool[,] universe = new bool[universeHeigth, universeWidth];
         bool[,] scratchPad = new bool[universeHeigth, universeWidth];
@@ -33,7 +33,7 @@ namespace Game_of_Life
         {
             InitializeComponent();
 
-            //RandomUniverse();
+            RandomUniverse();
             // Setup the timer
             timer.Interval = 5000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
@@ -259,7 +259,12 @@ namespace Game_of_Life
 
         private void playStripButton1_Click(object sender, EventArgs e)
         {
+            timer.Enabled = true;
+        }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
         }
     }
 }
