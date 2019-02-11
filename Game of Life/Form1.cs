@@ -33,7 +33,7 @@ namespace Game_of_Life
         {
             InitializeComponent();
 
-            RandomUniverse();
+            //RandomUniverse();
             // Setup the timer
             timer.Interval = 5000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
@@ -257,5 +257,9 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        private void playStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
