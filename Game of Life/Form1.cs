@@ -255,8 +255,8 @@ namespace Game_of_Life
             }
 
             generations = 0;
-
             graphicsPanel1.Invalidate();
+
         }
 
         private void playStripButton1_Click(object sender, EventArgs e)
@@ -277,6 +277,15 @@ namespace Game_of_Life
         {
             RandomUniverse();
             timer.Start();
+        }
+
+        private void nextToolStripButton3_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+            NextGeneration();
+            graphicsPanel1.Invalidate();
+
+            timer.Stop();
         }
     }
 }
