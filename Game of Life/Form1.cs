@@ -132,7 +132,7 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    if (randomNumber.Next(3) == 0)
+                    if (randomNumber.Next(0, 3) == 0)
                     {
                         universe[x, y] = true;
                     }
