@@ -33,7 +33,6 @@ namespace Game_of_Life
         {
             InitializeComponent();
 
-            //RandomUniverse();
             // Setup the timer
             timer.Interval = 1000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
@@ -155,12 +154,12 @@ namespace Game_of_Life
             // never put invalidate in Paint, on in clicks/keys etc.
         {
             // Calculate the width and height of each cell in pixels
-            // Currently fits to window
+            // Currently fits to window - I subtracted 1 from clientsize.width/heigth
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-            float cellWidth = (float)graphicsPanel1.ClientSize.Width / universe.GetLength(0) - 1; //returns length in deminsion 2D array so 0 1 for getlength
+            float cellWidth = ((float)graphicsPanel1.ClientSize.Width - 1) / universe.GetLength(0); //returns length in deminsion 2D array so 0 1 for getlength
 
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-            float cellHeight = (float)graphicsPanel1.ClientSize.Height / universe.GetLength(1) - 1;
+            float cellHeight = ((float)graphicsPanel1.ClientSize.Height - 1) / universe.GetLength(1);
 
             
 
@@ -191,7 +190,7 @@ namespace Game_of_Life
 
                     int neighbors = CountNeighbors(x, y);
                     //show neighbors
-                    Font font = new Font("Arial", 20f);
+                    Font font = new Font("Arial", 14f);
 
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Center;
@@ -261,9 +260,6 @@ namespace Game_of_Life
 
         private void playStripButton1_Click(object sender, EventArgs e)
         {
-            //RandomUniverse();
-            //timer.Interval = 1000; // milliseconds
-            //timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
             timer.Start();
         }
 
@@ -282,9 +278,8 @@ namespace Game_of_Life
         private void nextToolStripButton3_Click(object sender, EventArgs e)
         {
             timer.Start();
-            NextGeneration();
-            graphicsPanel1.Invalidate();
-
+            NextGeneration(); // Call next generation
+            graphicsPanel1.Invalidate(); //Update screen
             timer.Stop();
         }
     }
