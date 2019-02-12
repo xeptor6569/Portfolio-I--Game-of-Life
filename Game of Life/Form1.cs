@@ -12,7 +12,7 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
-        int seed = 10;
+        int seed = 10; //place holder for customization , randomize will be the same everytime currentyl
         static int universeHeigth = 20;
         static int universeWidth = 20;
         // The universe array
@@ -33,11 +33,11 @@ namespace Game_of_Life
         {
             InitializeComponent();
 
-            RandomUniverse();
+            //RandomUniverse();
             // Setup the timer
-            timer.Interval = 5000; // milliseconds
+            timer.Interval = 1000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
-            timer.Enabled = true; // start timer running.. turn on and off for pasue/play click event function in future
+            timer.Enabled = false; // start timer running.. turn on and off for pasue/play click event function in future
         }
 
         // Calculate the next generation of cells
@@ -143,6 +143,8 @@ namespace Game_of_Life
                     }
                 }
             }
+            graphicsPanel1.Invalidate();
+
         }
 
         //Change ints to floats - done
@@ -259,12 +261,22 @@ namespace Game_of_Life
 
         private void playStripButton1_Click(object sender, EventArgs e)
         {
-            timer.Enabled = true;
+            //RandomUniverse();
+            //timer.Interval = 1000; // milliseconds
+            //timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
+            timer.Start();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            timer.Enabled = false;
+            timer.Stop() ;
+
+        }
+
+        private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RandomUniverse();
+            timer.Start();
         }
     }
 }
