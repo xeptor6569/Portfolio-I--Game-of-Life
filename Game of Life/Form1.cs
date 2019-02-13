@@ -125,7 +125,7 @@ namespace Game_of_Life
         }
         public void RandomUniverse()
         {
-            //generations = 0;
+            generations = 0;
 
             Random randomNumber = new Random(seed);
             // Iterate through the universe in the y, top to bottom
@@ -256,6 +256,9 @@ namespace Game_of_Life
             }
 
             generations = 0;
+            // Update status strip generations
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+
             graphicsPanel1.Invalidate();
 
         }
@@ -274,12 +277,12 @@ namespace Game_of_Life
         private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RandomUniverse();
-            timer.Start();
+            //timer.Start();
         }
 
         private void nextToolStripButton3_Click(object sender, EventArgs e)
         {
-            timer.Start();
+            //timer.Start();
             NextGeneration(); // Call next generation
             graphicsPanel1.Invalidate(); //Update screen
             timer.Stop();
