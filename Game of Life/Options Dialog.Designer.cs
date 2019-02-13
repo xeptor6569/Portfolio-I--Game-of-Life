@@ -33,10 +33,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.intervalUpDown = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intervalUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
@@ -90,26 +90,61 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Height of Universe in Cells";
             // 
-            // numericUpDown1
+            // intervalUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(259, 38);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown1.TabIndex = 5;
+            this.intervalUpDown.Location = new System.Drawing.Point(259, 38);
+            this.intervalUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.intervalUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.intervalUpDown.Name = "intervalUpDown";
+            this.intervalUpDown.Size = new System.Drawing.Size(53, 20);
+            this.intervalUpDown.TabIndex = 5;
+            this.intervalUpDown.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
             // numericUpDown2
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(259, 74);
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(53, 20);
             this.numericUpDown2.TabIndex = 6;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             // 
             // numericUpDown3
             // 
             this.numericUpDown3.Location = new System.Drawing.Point(259, 104);
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(53, 20);
             this.numericUpDown3.TabIndex = 7;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             // 
             // Options_Dialog
             // 
@@ -121,7 +156,7 @@
             this.ClientSize = new System.Drawing.Size(366, 233);
             this.Controls.Add(this.numericUpDown3);
             this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.intervalUpDown);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -133,7 +168,7 @@
             this.Name = "Options_Dialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options Dialog";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intervalUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
@@ -148,7 +183,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown intervalUpDown;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
     }

@@ -304,5 +304,21 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
         }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Options_Dialog dlg = new Options_Dialog();
+
+            //dlg.SetInterval;
+            dlg.ValueX = timer.Interval;   //check video
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                //x = dlg.GetInterval()
+                timer.Interval = dlg.ValueX;
+
+                graphicsPanel1.Invalidate();
+            }
+        }
     }
 }

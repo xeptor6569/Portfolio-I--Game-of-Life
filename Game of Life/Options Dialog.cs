@@ -17,5 +17,26 @@ namespace Game_of_Life
             InitializeComponent();
         }
 
+        //public int GetInterval()
+        //{
+        //    return (int)intervalUpDown.Value;
+        //}
+
+        //public void SetInterval(int x)
+        //{
+        //    intervalUpDown.Value = x;
+        //}
+
+        public int ValueX
+        {
+            get
+            {
+                return (int)intervalUpDown.Value;
+            }
+            set
+            {
+                intervalUpDown.Value = value; //value what user is trying to set value to
+            }
+        }
     }
 }
