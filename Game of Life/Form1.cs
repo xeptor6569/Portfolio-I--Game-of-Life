@@ -125,6 +125,8 @@ namespace Game_of_Life
         }
         public void RandomUniverse()
         {
+            //generations = 0;
+
             Random randomNumber = new Random(seed);
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -281,6 +283,26 @@ namespace Game_of_Life
             NextGeneration(); // Call next generation
             graphicsPanel1.Invalidate(); //Update screen
             timer.Stop();
+        }
+
+        private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog backColordlg = new ColorDialog();
+            backColordlg.ShowDialog();
+        }
+
+        private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog cellColordlg = new ColorDialog();
+
+            cellColordlg.Color = cellColor; //data in
+
+            if (DialogResult.OK == cellColordlg.ShowDialog()) //if hit acccept button
+            {
+                cellColor = cellColordlg.Color; //data out, color choosen
+
+                graphicsPanel1.Invalidate();
+            }
         }
     }
 }
