@@ -307,6 +307,7 @@
             this.gridColorToolStripMenuItem.Name = "gridColorToolStripMenuItem";
             this.gridColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gridColorToolStripMenuItem.Text = "Grid Color";
+            this.gridColorToolStripMenuItem.Click += new System.EventHandler(this.gridColorToolStripMenuItem_Click);
             // 
             // gridX10ColorToolStripMenuItem
             // 

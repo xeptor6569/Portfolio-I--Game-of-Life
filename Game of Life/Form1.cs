@@ -288,9 +288,35 @@ namespace Game_of_Life
             timer.Stop();
         }
 
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Options_Dialog dlg = new Options_Dialog();
+
+            //dlg.SetInterval;
+            dlg.ValueX = timer.Interval;   //check video
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                //x = dlg.GetInterval()
+                timer.Interval = dlg.ValueX;
+
+                graphicsPanel1.Invalidate();
+            }
+
+        }
+
         private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog backColordlg = new ColorDialog();
+
+            backColordlg.Color = graphicsPanel1.BackColor;
+
+            if (DialogResult.OK == backColordlg.ShowDialog())
+            {
+                graphicsPanel1.BackColor = backColordlg.Color;
+
+                graphicsPanel1.Invalidate();
+            }
             backColordlg.ShowDialog();
         }
 
@@ -308,17 +334,15 @@ namespace Game_of_Life
             }
         }
 
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Options_Dialog dlg = new Options_Dialog();
+            ColorDialog gridColordlg = new ColorDialog();
 
-            //dlg.SetInterval;
-            dlg.ValueX = timer.Interval;   //check video
+            gridColordlg.Color = gridColor;
 
-            if (DialogResult.OK == dlg.ShowDialog())
+            if (DialogResult.OK == gridColordlg.ShowDialog()) //if hit acccept button
             {
-                //x = dlg.GetInterval()
-                timer.Interval = dlg.ValueX;
+                gridColor = gridColordlg.Color; //data out, color choosen
 
                 graphicsPanel1.Invalidate();
             }
