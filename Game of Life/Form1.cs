@@ -18,6 +18,9 @@ namespace Game_of_Life
         // The universe array
         bool[,] universe = new bool[universeHeigth, universeWidth];
         bool[,] scratchPad = new bool[universeHeigth, universeWidth];
+        bool drawRec = true;
+        bool drawNum = true;
+
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -28,6 +31,10 @@ namespace Game_of_Life
 
         // Generation count
         int generations = 0;
+        int allLiveCells = 0;
+        int liveCells = 0;
+
+
 
         public Form1()
         {
@@ -42,19 +49,20 @@ namespace Game_of_Life
         // Calculate the next generation of cells
         private void NextGeneration()
         {
-
+            allLiveCells = 0;
             //Apply rules
             for (int x = 0; x < scratchPad.GetLength(0); x++)
             {
                 for (int y = 0; y < scratchPad.GetLength(1); y++)
                 {
-                    int liveCells = CountNeighbors(x, y);
+                    liveCells = CountNeighbors(x, y);
 
                     if (universe[x, y] == true)
                     {
                         if (liveCells == 2 || liveCells == 3)
                         {
                             scratchPad[x, y] = true;
+                            ++allLiveCells;
                         }
                         else
                         {
@@ -66,6 +74,7 @@ namespace Game_of_Life
                         if (liveCells == 3)
                         {
                             scratchPad[x, y] = true;
+                            ++allLiveCells;
                         }
                         else
                         {
@@ -86,6 +95,8 @@ namespace Game_of_Life
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
+
         }
 
         // The event called by the timer every Interval milliseconds.
@@ -126,6 +137,7 @@ namespace Game_of_Life
         public void RandomUniverse()
         {
             generations = 0;
+            allLiveCells = 0;
 
             Random randomNumber = new Random(seed);
             // Iterate through the universe in the y, top to bottom
@@ -137,6 +149,7 @@ namespace Game_of_Life
                     if (randomNumber.Next(0, 3) == 0)
                     {
                         universe[x, y] = true;
+                        ++allLiveCells;
                     }
                     else
                     {
@@ -144,6 +157,8 @@ namespace Game_of_Life
                     }
                 }
             }
+            livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
+
             graphicsPanel1.Invalidate();
 
         }
@@ -163,10 +178,10 @@ namespace Game_of_Life
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
             float cellHeight = ((float)graphicsPanel1.ClientSize.Height - 1) / universe.GetLength(1);
 
-            
+            int penWidth = 1;
 
             // A Pen for drawing the grid lines (color, width)
-            Pen gridPen = new Pen(gridColor, 1);
+            Pen gridPen = new Pen(gridColor, penWidth);
 
             // A Brush for filling living cells interiors (color)
             Brush cellBrush = new SolidBrush(cellColor);
@@ -191,20 +206,33 @@ namespace Game_of_Life
                     }
 
                     int neighbors = CountNeighbors(x, y);
+                    string insideNum = "";
                     //show neighbors
                     Font font = new Font("Arial", 14f);
 
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Center;
                     stringFormat.LineAlignment = StringAlignment.Center;
-                    if ( neighbors > 0 || universe[x,y])
+
+                    if(neighbors == 0)
                     {
-                        e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
-  
+                        insideNum = "";
+                    }
+                    if ( neighbors > 0 || (neighbors == 0 && universe[x,y]))
+                    {
+                        insideNum = neighbors.ToString();  
+                    }
+                    if (drawNum == true)
+                    {
+                        e.Graphics.DrawString(insideNum.ToString(), font, Brushes.Black, cellRect, stringFormat);
+
                     }
 
-                    // Outline the cell with a pen
-                    e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    if (drawRec == true)
+                    {
+                        // Outline the cell with a pen
+                        e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    }
                 }
             }
 
@@ -236,8 +264,18 @@ namespace Game_of_Life
                     // Toggle the cell's state
                     // error if clicked in the gap from resizing ..  fix or handle error
                     universe[x, y] = !universe[x, y];
+                    if (universe[x, y] == true)
+                    {
+                        ++allLiveCells;
+                    }
+                    else
+                    {
+                        --allLiveCells;
+                    }
 
                     // Tell Windows you need to repaint ... tell windows you need refresh what you see in the window
+                    livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
+
                     graphicsPanel1.Invalidate();
                 }
             }
@@ -258,6 +296,7 @@ namespace Game_of_Life
             generations = 0;
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
 
             graphicsPanel1.Invalidate();
 
@@ -283,6 +322,7 @@ namespace Game_of_Life
         private void nextToolStripButton3_Click(object sender, EventArgs e)
         {
             //timer.Start();
+            allLiveCells = 0;
             NextGeneration(); // Call next generation
             graphicsPanel1.Invalidate(); //Update screen
             timer.Stop();
@@ -305,6 +345,7 @@ namespace Game_of_Life
 
         }
 
+        #region rightClickColor
         private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog backColordlg = new ColorDialog();
@@ -317,7 +358,7 @@ namespace Game_of_Life
 
                 graphicsPanel1.Invalidate();
             }
-            backColordlg.ShowDialog();
+            //backColordlg.ShowDialog();
         }
 
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -347,5 +388,30 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
         }
+        #endregion
+
+        //Right click view
+        #region rightClickView
+        private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            gridColorToolStripMenuItem1.Checked = !gridColorToolStripMenuItem1.Checked;
+            drawRec = !drawRec;
+            graphicsPanel1.Invalidate();
+            
+        }
+
+        private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            neighborCountToolStripMenuItem1.Checked = !neighborCountToolStripMenuItem1.Checked;
+            drawNum = !drawNum;
+            graphicsPanel1.Invalidate();
+        }
+
+        private void hUDToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            hUDToolStripMenuItem2.Checked = !hUDToolStripMenuItem2.Checked;
+        }
+        #endregion
+
     }
 }
