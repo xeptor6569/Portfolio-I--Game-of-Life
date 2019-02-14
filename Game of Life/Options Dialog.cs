@@ -38,5 +38,29 @@ namespace Game_of_Life
                 intervalUpDown.Value = value; //value what user is trying to set value to
             }
         }
+
+        public int ValueWidth
+        {
+            get
+            {
+                return (int)widthUpDown.Value;
+            }
+            set
+            {
+                widthUpDown.Value = value;
+            }
+        }
+
+        public int ValueHeigth
+        {
+            get
+            {
+                return (int)heightUpDown.Value;
+            }
+            set
+            {
+                heightUpDown.Value = value;
+            }
+        }
     }
 }

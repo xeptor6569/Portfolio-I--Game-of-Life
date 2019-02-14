@@ -34,11 +34,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.intervalUpDown = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.widthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.heightUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.intervalUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -112,35 +112,35 @@
             0,
             0});
             // 
-            // numericUpDown2
+            // widthUpDown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(259, 74);
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.widthUpDown.Location = new System.Drawing.Point(259, 74);
+            this.widthUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown2.TabIndex = 6;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.widthUpDown.Name = "widthUpDown";
+            this.widthUpDown.Size = new System.Drawing.Size(53, 20);
+            this.widthUpDown.TabIndex = 6;
+            this.widthUpDown.Value = new decimal(new int[] {
             30,
             0,
             0,
             0});
             // 
-            // numericUpDown3
+            // heightUpDown
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(259, 104);
-            this.numericUpDown3.Minimum = new decimal(new int[] {
+            this.heightUpDown.Location = new System.Drawing.Point(259, 104);
+            this.heightUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown3.TabIndex = 7;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.heightUpDown.Name = "heightUpDown";
+            this.heightUpDown.Size = new System.Drawing.Size(53, 20);
+            this.heightUpDown.TabIndex = 7;
+            this.heightUpDown.Value = new decimal(new int[] {
             30,
             0,
             0,
@@ -154,8 +154,8 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(366, 233);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.heightUpDown);
+            this.Controls.Add(this.widthUpDown);
             this.Controls.Add(this.intervalUpDown);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -169,8 +169,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options Dialog";
             ((System.ComponentModel.ISupportInitialize)(this.intervalUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown intervalUpDown;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown widthUpDown;
+        private System.Windows.Forms.NumericUpDown heightUpDown;
     }
 }

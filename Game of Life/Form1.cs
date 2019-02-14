@@ -334,11 +334,15 @@ namespace Game_of_Life
 
             //dlg.SetInterval;
             dlg.ValueX = timer.Interval;   //check video
+            dlg.ValueWidth = universeWidth;
+            dlg.ValueHeigth = universeHeigth;
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 //x = dlg.GetInterval()
                 timer.Interval = dlg.ValueX;
+                universeWidth = dlg.ValueWidth;
+                universeHeigth = dlg.ValueHeigth;
 
                 graphicsPanel1.Invalidate();
             }
