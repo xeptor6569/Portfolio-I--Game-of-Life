@@ -48,7 +48,7 @@
             this.okButton.Location = new System.Drawing.Point(108, 185);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 0;
+            this.okButton.TabIndex = 3;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = false;
             // 
@@ -59,7 +59,7 @@
             this.cancelButton.Location = new System.Drawing.Point(189, 185);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 1;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
             // 
@@ -69,7 +69,7 @@
             this.label1.Location = new System.Drawing.Point(81, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Time Interval in Milliseconds";
             // 
             // label2
@@ -78,7 +78,7 @@
             this.label2.Location = new System.Drawing.Point(81, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Width of Universe in Cells";
             // 
             // label3
@@ -87,7 +87,7 @@
             this.label3.Location = new System.Drawing.Point(81, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 13);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Height of Universe in Cells";
             // 
             // intervalUpDown
@@ -105,7 +105,7 @@
             0});
             this.intervalUpDown.Name = "intervalUpDown";
             this.intervalUpDown.Size = new System.Drawing.Size(53, 20);
-            this.intervalUpDown.TabIndex = 5;
+            this.intervalUpDown.TabIndex = 0;
             this.intervalUpDown.Value = new decimal(new int[] {
             20,
             0,
@@ -122,7 +122,7 @@
             0});
             this.widthUpDown.Name = "widthUpDown";
             this.widthUpDown.Size = new System.Drawing.Size(53, 20);
-            this.widthUpDown.TabIndex = 6;
+            this.widthUpDown.TabIndex = 1;
             this.widthUpDown.Value = new decimal(new int[] {
             30,
             0,
@@ -139,7 +139,7 @@
             0});
             this.heightUpDown.Name = "heightUpDown";
             this.heightUpDown.Size = new System.Drawing.Size(53, 20);
-            this.heightUpDown.TabIndex = 7;
+            this.heightUpDown.TabIndex = 2;
             this.heightUpDown.Value = new decimal(new int[] {
             30,
             0,

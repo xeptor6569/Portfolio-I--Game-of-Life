@@ -24,7 +24,7 @@ namespace Game_of_Life
 
         // Drawing colors
         Color gridColor = Color.Black;
-        Color cellColor = Color.Honeydew;
+        Color cellColor = Color.Green;
 
         // The Timer class
         Timer timer = new Timer();
@@ -40,6 +40,8 @@ namespace Game_of_Life
         {
             InitializeComponent();
 
+            //read in settings
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackColor;
             // Setup the timer
             timer.Interval = 1000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
@@ -283,6 +285,7 @@ namespace Game_of_Life
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timer.Stop();
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
             {
@@ -292,7 +295,7 @@ namespace Game_of_Life
                     universe[x, y]= false;
                 }
             }
-
+            allLiveCells = 0;
             generations = 0;
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
@@ -316,7 +319,6 @@ namespace Game_of_Life
         private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RandomUniverse();
-            //timer.Start();
         }
 
         private void nextToolStripButton3_Click(object sender, EventArgs e)
@@ -344,6 +346,8 @@ namespace Game_of_Life
                 universeWidth = dlg.ValueWidth;
                 universeHeigth = dlg.ValueHeigth;
 
+                //if nothing changed then new universe and redraw
+                //
                 graphicsPanel1.Invalidate();
             }
 
@@ -417,5 +421,38 @@ namespace Game_of_Life
         }
         #endregion
 
+        private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Seed_Dialog sdlg = new Seed_Dialog();
+
+            sdlg.SeedValue = seed;
+
+            if(DialogResult.OK == sdlg.ShowDialog())
+            {
+                seed = sdlg.SeedValue;
+                RandomUniverse();
+
+                graphicsPanel1.Invalidate();
+            }
+        }
+
+
+
+
+        //exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Update settings
+            Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
+
+
+            //Save new settings for next run of file
+            Properties.Settings.Default.Save();
+        }
     }
 }
