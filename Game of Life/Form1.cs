@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -485,6 +486,58 @@ namespace Game_of_Life
             Properties.Settings.Default.GridColor = gridColor;
             //Save new settings for next run of file
             Properties.Settings.Default.Save();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2; dlg.DefaultExt = "cells";
+
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dlg.FileName);
+                StringBuilder currentRow = new StringBuilder();
+
+                // Write any comments you want to include first.
+                // Prefix all comment strings with an exclamation point.
+                // Use WriteLine to write the strings to the file. 
+                // It appends a CRLF for you.
+                writer.WriteLine("!Save Game of Life");
+
+                // Iterate through the universe one row at a time.
+                for (int y = 0; y < universeHeigth; y++)
+                {
+                    // Create a string to represent the current row.
+                    currentRow.Clear();
+                    // Iterate through the current row one cell at a time.
+                    for (int x = 0; x < universeWidth; x++)
+                    {
+                        // If the universe[x,y] is alive then append 'O' (capital O)
+                        // to the row string.
+
+                        // Else if the universe[x,y] is dead then append '.' (period)
+                        // to the row string.
+
+                        if(universe[x,y] == true)
+                        {
+                            currentRow.Append('O');
+                        }
+                        else if(universe[x, y] == false)
+                        {
+                            currentRow.Append('.');
+                        }
+                    }
+
+                    // Once the current row has been read through and the 
+                    // string constructed then write it to the file using WriteLine.
+                    writer.WriteLine(currentRow);
+                }
+
+                // After all rows and columns have been written then close the file.
+                writer.Close();
+            }
         }
     }
 }
