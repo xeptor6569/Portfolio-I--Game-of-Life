@@ -32,6 +32,9 @@ namespace Game_of_Life
         private void randomSeedButton_Click(object sender, EventArgs e)
         {
             Random randomNumber = new Random();
+            int seedv;
+            seedv = randomNumber.Next();
+            seedUpDown.Value = seedv;
         }
     }
 }

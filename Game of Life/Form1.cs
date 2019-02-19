@@ -41,7 +41,10 @@ namespace Game_of_Life
             InitializeComponent();
 
             //read in settings
+            //assign settings to local variables to use in program** in form close, update settings **
             graphicsPanel1.BackColor = Properties.Settings.Default.BackColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            gridColor = Properties.Settings.Default.GridColor;
             // Setup the timer
             timer.Interval = 1000; // milliseconds
             timer.Tick += Timer_Tick;  //calss next generation every 100 millisecons
@@ -437,7 +440,24 @@ namespace Game_of_Life
         }
 
 
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
 
+            Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.GridColor = gridColor;
+
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reload();
+
+            Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.GridColor = gridColor;
+        }
 
         //exit
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -449,10 +469,12 @@ namespace Game_of_Life
         {
             //Update settings
             Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
-
-
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.GridColor = gridColor;
             //Save new settings for next run of file
             Properties.Settings.Default.Save();
         }
+
+
     }
 }
