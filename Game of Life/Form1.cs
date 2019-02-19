@@ -583,6 +583,9 @@ namespace Game_of_Life
                 }
                 universeHeigth = maxHeight;
                 universeWidth = maxWidth;
+                universe = new bool[universeHeigth, universeWidth];
+                scratchPad = new bool[universeHeigth, universeWidth];
+
                 // Resize the current universe and scratchPad
                 // to the width and height of the file calculated above.
 
@@ -624,13 +627,14 @@ namespace Game_of_Life
                             }
                         }
                         ++_y;
-                        row = reader.ReadLine();
+                        //row = reader.ReadLine();
                     }
                 }
 
                 // Close the file.
                 reader.Close();
             }
+            graphicsPanel1.Invalidate();
         }
     }
 }
