@@ -101,7 +101,7 @@ namespace Game_of_Life
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
-
+            intervalStripStatusLabel.Text = "Interval: " + timer.Interval.ToString();
         }
 
         // The event called by the timer every Interval milliseconds.
@@ -303,6 +303,7 @@ namespace Game_of_Life
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
+            intervalStripStatusLabel.Text = "Interval: " + timer.Interval.ToString();
 
             graphicsPanel1.Invalidate();
 
@@ -351,6 +352,10 @@ namespace Game_of_Life
 
                 //if nothing changed then new universe and redraw
                 //
+                universe = new bool[universeHeigth, universeWidth];
+
+                intervalStripStatusLabel.Text = "Interval: " + timer.Interval.ToString();
+
                 graphicsPanel1.Invalidate();
             }
 
@@ -438,7 +443,14 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
         }
-
+    
+        private void fromTimeToolStrip_Click(object sender, EventArgs e)
+        {
+            DateTime dateTime = DateTime.Now;
+            int time = (int)dateTime.TimeOfDay.TotalMilliseconds;
+            seed = time;
+            RandomUniverse();
+        }
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -474,7 +486,5 @@ namespace Game_of_Life
             //Save new settings for next run of file
             Properties.Settings.Default.Save();
         }
-
-
     }
 }
