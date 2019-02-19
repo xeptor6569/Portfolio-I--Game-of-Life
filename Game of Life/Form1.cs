@@ -17,8 +17,8 @@ namespace Game_of_Life
         static int universeHeigth = 20;
         static int universeWidth = 20;
         // The universe array
-        bool[,] universe = new bool[universeHeigth, universeWidth];
-        bool[,] scratchPad = new bool[universeHeigth, universeWidth];
+        bool[,] universe = new bool[universeWidth, universeHeigth];
+        bool[,] scratchPad = new bool[universeWidth, universeHeigth];
         bool drawRec = true;
         bool drawNum = true;
 
@@ -353,7 +353,7 @@ namespace Game_of_Life
 
                 //if nothing changed then new universe and redraw
                 //
-                universe = new bool[universeHeigth, universeWidth];
+                universe = new bool[universeWidth, universeHeigth];
 
                 intervalStripStatusLabel.Text = "Interval: " + timer.Interval.ToString();
 
@@ -583,8 +583,8 @@ namespace Game_of_Life
                 }
                 universeHeigth = maxHeight;
                 universeWidth = maxWidth;
-                universe = new bool[universeHeigth, universeWidth];
-                scratchPad = new bool[universeHeigth, universeWidth];
+                universe = new bool[universeWidth, universeHeigth];
+                scratchPad = new bool[universeWidth, universeHeigth];
 
                 // Resize the current universe and scratchPad
                 // to the width and height of the file calculated above.
