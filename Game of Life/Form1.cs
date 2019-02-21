@@ -21,11 +21,15 @@ namespace Game_of_Life
         bool[,] scratchPad = new bool[universeWidth, universeHeigth];
         bool drawRec = true;
         bool drawNum = true;
-
+        string hudToString;
 
         // Drawing colors
         Color gridColor = Color.Black;
         Color cellColor = Color.Green;
+        //Transperancy
+        //                        e.Graphics.DrawString(insideNum.ToString(), font, Brushes.Black, cellRect, stringFormat);
+
+        
 
         // The Timer class
         Timer timer = new Timer();
@@ -242,12 +246,38 @@ namespace Game_of_Life
                 }
             }
 
-
+            // call hud (object sender, painteventargs e)
+            //if hudmenuitem.checked then call function
+            if (hUDToolStripMenuItem2.Checked)
+            {
+                HudPaint(sender, e);
+            }
 
             // Cleaning up pens and brushes
             // will work without but helps the garbage collector
             gridPen.Dispose();
             cellBrush.Dispose();
+        }
+        private void HudPaint(object sender, PaintEventArgs e)
+        {
+            Color hudColor = Color.FromArgb(200, Color.Red);
+            Brush hudBrush = new SolidBrush(hudColor);
+            RectangleF hudRect = Rectangle.Empty;
+
+
+            Font font = new Font("Arial", 14f);
+            StringFormat hudString = new StringFormat();
+            hudString.Alignment = StringAlignment.Near;
+            hudString.LineAlignment = StringAlignment.Near;
+            hudToString = "Generations: " + generations.ToString() + "\n" + "Cell Count: " + allLiveCells.ToString() + "\n" + "Universe Size: { Width = " + universeWidth.ToString()
+                + "Height = " + universeHeigth.ToString() + " }";
+
+            e.Graphics.DrawString(hudToString, font, hudBrush, graphicsPanel1.ClientRectangle, hudString);
+        }
+        private void hUDToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            hUDToolStripMenuItem2.Checked = !hUDToolStripMenuItem2.Checked;
+            graphicsPanel1.Invalidate();
         }
 
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -422,11 +452,6 @@ namespace Game_of_Life
             neighborCountToolStripMenuItem1.Checked = !neighborCountToolStripMenuItem1.Checked;
             drawNum = !drawNum;
             graphicsPanel1.Invalidate();
-        }
-
-        private void hUDToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            hUDToolStripMenuItem2.Checked = !hUDToolStripMenuItem2.Checked;
         }
         #endregion
 
