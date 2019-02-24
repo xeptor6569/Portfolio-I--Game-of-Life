@@ -143,6 +143,7 @@ namespace Game_of_Life
                 }
             
             }   return neighborCount;
+
         }
         public void RandomUniverse()
         {
