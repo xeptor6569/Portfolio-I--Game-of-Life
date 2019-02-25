@@ -127,21 +127,116 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int yy = -1; yy < 2; yy++)
                 {
-                    //border check
-                    if (x + xx < universe.GetLength(0) && x + xx >= 0 && (y + yy < universe.GetLength(1)) 
-                        && y + yy >= 0)
+                    //Finite
+                    if (finiteToolStripMenuItem.Checked)
                     {
-                        // center check
-                        if(xx!= 0 || yy != 0)
+                        //border check
+                        if (x + xx < universe.GetLength(0) && x + xx >= 0 && (y + yy < universe.GetLength(1))
+                            && y + yy >= 0)
                         {
-                            if(universe[x + xx, y + yy])
+                            // center check
+                            if (xx != 0 || yy != 0)
                             {
-                                neighborCount++;
+                                if (universe[x + xx, y + yy])
+                                {
+                                    neighborCount++;
+                                }
+                            }
+                        }
+                    }
+                    //Torodial
+                    if (torodialToolStripMenuItem.Checked)
+                    {
+                        if (x == universe.GetLength(0) - 1
+                              && y == 0
+                              && x + xx == universe.GetLength(0)
+                              && y + yy == -1
+                              && (xx != 0 || yy != 0)
+                              && universe[0, universe.GetLength(1) - 1])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (y == universe.GetLength(1) - 1
+                            && x == 0
+                            && x + xx == -1
+                            && y + yy == universe.GetLength(1)
+                            && (xx != 0 || yy != 0)
+                            && universe[universe.GetLength(0) - 1, 0])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (x + xx >= universe.GetLength(0)
+                            && y + yy >= 0
+                            && (xx != 0 || yy != 0)
+                            && y + yy < universe.GetLength(1)
+                            && universe[0, y + yy])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (x + xx < 0
+                            && y + yy >= 0
+                            && (xx != 0 || yy != 0)
+                            && y + yy < universe.GetLength(1)
+                            && universe[universe.GetLength(0) - 1, y + yy])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (y + yy >= universe.GetLength(1)
+                            && x + xx >= 0
+                            && (xx != 0 || yy != 0)
+                            && x + xx < universe.GetLength(0)
+                            && universe[x + xx, 0])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (y + yy < 0
+                            && x + xx >= 0
+                            && (xx != 0 | yy != 0)
+                            && x + xx < universe.GetLength(0)
+                            && universe[x + xx, universe.GetLength(1) - 1])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (x == 0
+                            && y == 0
+                            && x + xx == -1
+                            && y + yy == -1
+                            && (xx != 0 || yy != 0)
+                            && universe[universe.GetLength(0) - 1, universe.GetLength(1) - 1])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (x == universe.GetLength(0) - 1
+                            && y == universe.GetLength(1) - 1
+                            && x + xx == universe.GetLength(0)
+                            && y + yy == universe.GetLength(1)
+                            && (xx != 0 || yy != 0)
+                            && universe[0, 0])
+                        {
+                            neighborCount++;
+                        }
+
+                        if (x + xx < universe.GetLength(0) && x + xx >= 0 && (y + yy < universe.GetLength(1))
+                            && y + yy >= 0)
+                        {
+                            // center check
+                            if (xx != 0 || yy != 0)
+                            {
+                                if (universe[x + xx, y + yy])
+                                {
+                                    neighborCount++;
+                                }
                             }
                         }
                     }
                 }
-            
             }   return neighborCount;
 
         }
@@ -270,8 +365,18 @@ namespace Game_of_Life
             StringFormat hudString = new StringFormat();
             hudString.Alignment = StringAlignment.Near;
             hudString.LineAlignment = StringAlignment.Near;
+            string boundryType = "Boundry Type ";
+            if (finiteToolStripMenuItem.Checked)
+            {
+                boundryType = "Boundry Type = Finite";
+            }
+            if (torodialToolStripMenuItem.Checked)
+            {
+                boundryType = "Boundry Type = Torodial";
+            }
+              
             hudToString = "Generations: " + generations.ToString() + "\n" + "Cell Count: " + allLiveCells.ToString() + "\n" + "Universe Size: { Width = " + universeWidth.ToString()
-                + "Height = " + universeHeigth.ToString() + " }";
+                + "Height = " + universeHeigth.ToString() + " } \n" + boundryType;
 
             e.Graphics.DrawString(hudToString, font, hudBrush, graphicsPanel1.ClientRectangle, hudString);
         }
@@ -359,7 +464,6 @@ namespace Game_of_Life
 
         private void nextToolStripButton3_Click(object sender, EventArgs e)
         {
-            //timer.Start();
             allLiveCells = 0;
             NextGeneration(); // Call next generation
             graphicsPanel1.Invalidate(); //Update screen
@@ -370,14 +474,12 @@ namespace Game_of_Life
         {
             Options_Dialog dlg = new Options_Dialog();
 
-            //dlg.SetInterval;
             dlg.ValueX = timer.Interval;   //check video
             dlg.ValueWidth = universeWidth;
             dlg.ValueHeigth = universeHeigth;
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                //x = dlg.GetInterval()
                 timer.Interval = dlg.ValueX;
                 universeWidth = dlg.ValueWidth;
                 universeHeigth = dlg.ValueHeigth;
@@ -391,6 +493,18 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
 
+        }
+
+        private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
+        }
+
+        private void torodialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            torodialToolStripMenuItem.Checked = !torodialToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
         }
 
         #region rightClickColor
@@ -568,6 +682,9 @@ namespace Game_of_Life
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            generations = 0;
+            
+
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "All Files|*.*|Cells|*.cells";
             dlg.FilterIndex = 2;
@@ -655,6 +772,43 @@ namespace Game_of_Life
                         ++_y;
                         //row = reader.ReadLine();
                     }
+                    allLiveCells = 0;
+                    //Apply rules
+                    for (int x = 0; x < scratchPad.GetLength(0); x++)
+                    {
+                        for (int y = 0; y < scratchPad.GetLength(1); y++)
+                        {
+                            liveCells = CountNeighbors(x, y);
+
+                            if (universe[x, y] == true)
+                            {
+                                if (liveCells == 2 || liveCells == 3)
+                                {
+                                    scratchPad[x, y] = true;
+                                    ++allLiveCells;
+                                }
+                                else
+                                {
+                                    scratchPad[x, y] = false;
+                                }
+                            }
+                            else
+                            {
+                                if (liveCells == 3)
+                                {
+                                    scratchPad[x, y] = true;
+                                    ++allLiveCells;
+                                }
+                                else
+                                {
+                                    scratchPad[x, y] = false;
+                                }
+                            }
+
+                        }
+                    }
+                    toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+                    livingStripStatusLabel1.Text = "Living Cells: " + allLiveCells.ToString();
                 }
 
                 // Close the file.

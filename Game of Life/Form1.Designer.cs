@@ -225,6 +225,7 @@
             this.torodialToolStripMenuItem.Name = "torodialToolStripMenuItem";
             this.torodialToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.torodialToolStripMenuItem.Text = "Toroidal";
+            this.torodialToolStripMenuItem.Click += new System.EventHandler(this.torodialToolStripMenuItem_Click);
             // 
             // finiteToolStripMenuItem
             // 
@@ -233,6 +234,7 @@
             this.finiteToolStripMenuItem.Name = "finiteToolStripMenuItem";
             this.finiteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.finiteToolStripMenuItem.Text = "Finite";
+            this.finiteToolStripMenuItem.Click += new System.EventHandler(this.finiteToolStripMenuItem_Click);
             // 
             // runToolStripMenuItem
             // 
@@ -543,7 +545,7 @@
             this.hUDToolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hUDToolStripMenuItem2.Enabled = false;
             this.hUDToolStripMenuItem2.Name = "hUDToolStripMenuItem2";
-            this.hUDToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.hUDToolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
             this.hUDToolStripMenuItem2.Text = "HUD";
             this.hUDToolStripMenuItem2.Click += new System.EventHandler(this.hUDToolStripMenuItem2_Click);
             // 
@@ -552,7 +554,7 @@
             this.neighborCountToolStripMenuItem1.Checked = true;
             this.neighborCountToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.neighborCountToolStripMenuItem1.Name = "neighborCountToolStripMenuItem1";
-            this.neighborCountToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.neighborCountToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.neighborCountToolStripMenuItem1.Text = "Neighbor Count";
             this.neighborCountToolStripMenuItem1.Click += new System.EventHandler(this.neighborCountToolStripMenuItem1_Click);
             // 
@@ -561,7 +563,7 @@
             this.gridToolStripMenuItem1.Checked = true;
             this.gridToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gridToolStripMenuItem1.Name = "gridToolStripMenuItem1";
-            this.gridToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.gridToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.gridToolStripMenuItem1.Text = "Grid";
             this.gridToolStripMenuItem1.Click += new System.EventHandler(this.gridToolStripMenuItem1_Click);
             // 
