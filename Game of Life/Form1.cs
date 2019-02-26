@@ -487,6 +487,7 @@ namespace Game_of_Life
                 //if nothing changed then new universe and redraw
                 //
                 universe = new bool[universeWidth, universeHeigth];
+                scratchPad = new bool[universeWidth, universeHeigth];
 
                 intervalStripStatusLabel.Text = "Interval: " + timer.Interval.ToString();
 
