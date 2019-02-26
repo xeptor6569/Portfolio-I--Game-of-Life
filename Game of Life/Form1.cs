@@ -598,19 +598,18 @@ namespace Game_of_Life
         {
             Properties.Settings.Default.Reset();
 
-            Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
-            Properties.Settings.Default.CellColor = cellColor;
-            Properties.Settings.Default.GridColor = gridColor;
-
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            gridColor = Properties.Settings.Default.GridColor;
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
 
-            Properties.Settings.Default.BackColor = graphicsPanel1.BackColor;
-            Properties.Settings.Default.CellColor = cellColor;
-            Properties.Settings.Default.GridColor = gridColor;
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            gridColor = Properties.Settings.Default.GridColor;
         }
 
         //exit
